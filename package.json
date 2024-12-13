@@ -1,0 +1,21 @@
+{
+  "name": "field",
+  "version": "1.0.0",
+  "description": "Service for groups looking for a playground",
+  "main": "field.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "developmental": "",
+    "production": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yojokem/field.git"
+  },
+  "author": "Frost Kim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yojokem/field/issues"
+  },
+  "homepage": "https://github.com/yojokem/field#readme"
+}
