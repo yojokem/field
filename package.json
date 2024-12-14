@@ -5,7 +5,7 @@
   "main": "field.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "developmental": "",
+    "developmental": "node field.js",
     "production": ""
   },
   "repository": {
@@ -17,5 +17,11 @@
   "bugs": {
     "url": "https://github.com/yojokem/field/issues"
   },
-  "homepage": "https://github.com/yojokem/field#readme"
+  "homepage": "https://github.com/yojokem/field#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.2",
+    "http-errors": "^2.0.0",
+    "morgan": "^1.10.0"
+  }
 }
