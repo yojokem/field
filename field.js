@@ -25,6 +25,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 /* ******************* */
 
+/**
+ * Router Registration
+ */
+
+const indexRoute = require("./routes/index");
+app.use(indexRoute);
+
+/* ******************* */
+
 app.listen(80, () => {
     console.log("is now running");
 })
