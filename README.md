@@ -11,3 +11,10 @@ nodejs express 기반, MySQL 사용.
 - Web-App 기반 notification
 - 문자·카카오톡 메시지 송·수신
 - 사무 단계적 구성 기획
+
+### Scalability
+- 
+
+
+## Extendability
+- 

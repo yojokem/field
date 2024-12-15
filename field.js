@@ -1,7 +1,11 @@
-const express = require("express");
 const path = require("path");
-const logger = require("morgan");
+
+const express = require("express");
 const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const nunjucks = require("nunjucks");
+
+/* Load */
 
 const app = express();
 
@@ -9,6 +13,11 @@ const app = express();
  * View Engines
  */
 
+app.set('view engine', 'html');
+nunjucks.configure('views', {
+    express: app,
+    watch: true,
+});
 app.set('views', path.join(__dirname, "views"))
 
 /**

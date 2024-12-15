@@ -19,9 +19,11 @@
   },
   "homepage": "https://github.com/yojokem/field#readme",
   "dependencies": {
+    "chokidar": "^3.6.0",
     "cookie-parser": "^1.4.7",
     "express": "^4.21.2",
     "http-errors": "^2.0.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "nunjucks": "^3.2.4"
   }
 }
