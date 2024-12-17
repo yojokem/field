@@ -6,5 +6,5 @@ let p = defaultIndex.router;
 p.get("/", (req, res) => res.render('ground'));
 
 module.exports = [
-    defaultIndex.router
+    defaultIndex
 ];

@@ -39,7 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
  */
 
 const indexRoute = require("./routes/index");
-app.use(indexRoute);
+indexRoute[0].apply(app);
 
 /* ******************* */
 

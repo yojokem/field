@@ -56,14 +56,39 @@ class RouteModel {
         return p;
     }
 
-    setProximalLocal(key, value) {
+    /**
+     * 
+     * @param {String} key 
+     * @param {?} value 
+     * @param  {Function} callback 
+     */
+    setProximalLocal(key, value, callback) {
+        if(callback != {})
+            value = callback(value)
+
         locals[key] = value;
     }
 
-    async setDistalLocal(callback, key, value) {
-        if(await callback()) {
+    /**
+     * 
+     * @param {String} key 
+     * @param {?} value 
+     */
+    setProximalLocal(key, value) {
+        this.setProximalLocal(key, value, callback = {});
+    }
+
+    // Scope relayed delay; 광범위하게 공시되는 실시간 데이터
+    /**
+     * 
+     * @param {Function} callback 
+     * @param {String} key 
+     * @param {Function} criteria 
+     */
+    async setDistalLocal(callback, key, criteria) {
+        let value = await callback();
+        if(criteria(value))
             locals[key] = value;
-        }
     }
 
     /**
