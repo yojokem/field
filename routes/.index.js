@@ -18,6 +18,12 @@ class RouteModel {
         console.log(`RouteModel 〔${this.name}〕`);
         console.info("RouteModel defined.");
         models.push(this);
+
+        let local = this;
+        this.router.use((req, res, next) => {
+            res.locals = local.#inLocals();
+            next();
+        });
     }
 
     #locals = {};
@@ -28,6 +34,10 @@ class RouteModel {
      */
     get locals() {
         return Object.assign(this.#locals);
+    }
+
+    #inLocals() {
+        return this.#locals;
     }
 
     /**
@@ -52,7 +62,7 @@ class RouteModel {
      */
     popupLocal(key, value) {
         let p = getLocal(key);
-        locals[key] = value;
+        this.#locals[key] = value;
         return p;
     }
 
@@ -63,10 +73,10 @@ class RouteModel {
      * @param  {Function} callback 
      */
     setProximalLocal(key, value, callback) {
-        if(callback != {})
+        if(callback != 0)
             value = callback(value)
 
-        locals[key] = value;
+        this.#locals[key] = value;
     }
 
     /**
@@ -74,8 +84,8 @@ class RouteModel {
      * @param {String} key 
      * @param {?} value 
      */
-    setProximalLocal(key, value) {
-        this.setProximalLocal(key, value, callback = {});
+    setLocal(key, value) {
+        this.setProximalLocal(key, value, 0);
     }
 
     // Scope relayed delay; 광범위하게 공시되는 실시간 데이터
@@ -87,8 +97,8 @@ class RouteModel {
      */
     async setDistalLocal(callback, key, criteria) {
         let value = await callback();
-        if(criteria(value))
-            locals[key] = value;
+        if(await criteria(value))
+            this.#locals[key] = value;
     }
 
     /**

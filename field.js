@@ -18,7 +18,7 @@ nunjucks.configure('views', {
     express: app,
     watch: true,
 });
-app.set('views', path.join(__dirname, "views"))
+app.set('views', path.join(__dirname, "views"));
 
 /**
  * Middleware Lineages
