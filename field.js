@@ -31,6 +31,7 @@ app.use(express.urlencoded({
     extended: false
 }));
 app.use(express.static(path.join(__dirname, 'public')));
+require("./field.session")(app); //Session
 
 /* ******************* */
 
@@ -45,4 +46,5 @@ indexRoute[0].apply(app);
 
 app.listen(80, () => {
     console.log("is now running");
+    console.log(`Current Running Mode: [${process.env.mode}}]`);
 })
