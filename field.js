@@ -8,6 +8,7 @@ const nunjucks = require("nunjucks");
 /* Load */
 
 const app = express();
+const PORT = process.env.PORT;
 
 /**
  * View Engines
@@ -30,7 +31,7 @@ app.use(express.json());
 app.use(express.urlencoded({
     extended: false
 }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 require("./field.session")(app); //Session
 
 /* ******************* */
@@ -44,7 +45,9 @@ indexRoute[0].apply(app);
 
 /* ******************* */
 
-app.listen(80, () => {
-    console.log("is now running");
-    console.log(`Current Running Mode: [${process.env.mode}}]`);
-})
+console.info(`Field is mandatory to serve on the PORT ${PORT}`);
+
+app.listen(PORT, () => {
+    console.log(`is now running on the PORT ${PORT}`);
+    console.log(`Current Running Mode: [${process.env.mode}]`);
+});

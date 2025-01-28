@@ -13,20 +13,23 @@ class RouteModel {
      * @param  {...String} route Array of designated routes
      */
     constructor(name, ...route) {
-        this.name = name;
-        this._route = route;
-        console.log(`RouteModel 〔${this.name}〕`);
-        console.info("RouteModel defined.");
-        models.push(this);
+        try {
+            this.name = name;
+            this._route = route;
+            models.push(this);
 
-        let local = this;
-        this.router.use((req, res, next) => {
-            res.locals = local.#inLocals();
-            next();
-        });
+            let local = this;
+            this.router.use((req, res, next) => {
+                res.locals = local.#inLocals();
+                next();
+            });
+        } catch {
+            console.info(`RouteModel 〔${this.name}〕[${this._route}] defined.`);
+        }
     }
 
     #locals = {};
+    pages = [];
 
     /**
      * Get a copy of the locals in the RouteModel.
@@ -108,6 +111,9 @@ class RouteModel {
         return this.#router;
     }
 
+    /**
+     * @param {express.Router} router
+     */
     set router(router) {
         console.log("The alteration of router for the RouteModel is not allowed.");
         return false;
@@ -118,7 +124,7 @@ class RouteModel {
     }
 
     /**
-     * @returns {Array<String>} designated routes
+     * @param {Array<String>} route designated routes
      */
     set route(route) {
         this._route = route;
