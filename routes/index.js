@@ -10,6 +10,10 @@ p.get("/", (req, res) => {
     res.render('ground');
 });
 
+new RouteModel("Default", "/");
+new RouteModel("Default", "/");
+new RouteModel("Default", "/");
+
 module.exports = [
     defaultIndex
 ];
