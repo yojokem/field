@@ -40,7 +40,7 @@ require("./field.session")(app); //Session
  * Router Registration
  */
 
-const indexRoute = require("./routes/index");
+const indexRoute = require("./routes/");
 indexRoute[0].apply(app);
 
 /* ******************* */

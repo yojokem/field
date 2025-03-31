@@ -23,8 +23,9 @@ class RouteModel {
                 res.locals = local.#inLocals();
                 next();
             });
+            console.info(`RouteModel 〔${name}〕[${this._route}] defined.`);
         } catch {
-            console.info(`RouteModel 〔${this.name}〕[${this._route}] defined.`);
+            console.error(`RouteModel 〔${name}〕[${this._route}] already exists.`);
         }
     }
 

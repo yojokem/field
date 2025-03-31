@@ -1,7 +1,8 @@
 const getParams = require("../utils/params");
 
 const models = [];
-const pathRegExp = /(\/[^\s]*)?$/i;
+const pathRegExp = /(\/[^\s]*)?$/u;
+const fileRegExp = /(\/[^\s]*)?((\.)[\w]+){1}$/u;
 
 class Page {
     title = '';
@@ -35,10 +36,22 @@ class Page {
      * @param {Function} middleware 
      */
     addMiddleware(middleware) {
-        if(typeof middleware !== 'function') throw new Error(`Page ${this.title} could not handle the `);
+        if(typeof middleware !== 'function') throw new Error(`Page ${this.title} could not handle the given middleware: ${middleware.toString()}`);
 
         if(Page.checkMiddlewareParameters(middleware)) this._middlewares.push(middleware);
         else throw new Error(``);
+    }
+
+    /**
+     * @param {Function} middleware 
+     */
+    removeMiddleware(middleware) {
+        if(typeof middleware !== 'function') throw new Error(`Page ${this.title} could not handle the given middleware: ${middleware.toString()}`);
+
+        index = this._middlewares.indexOf(middleware);
+        if(index < 0) throw new Error(``);
+        
+        this._middlewares = this.middlewares.filter(x => x !== middleware);
     }
 
     /**
