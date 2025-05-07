@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Field set-ground</title>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <!-- Keywords -->
+        <meta name="keywords" content="양노환장" />
+        <meta name="keywords" content="노환장" />
+        <meta name="keywords" content="노환빌라" />
+        <meta name="description" content="양노환장 공식 웹 사이트입니다." />
+        <meta name="robots" content="noarchive" />
+        <meta charset="UTF-8" />
+    </head>
+    <body>
+        <div>
+            <div id="alert"></div>
+            {% include "public/header.html" %}
+            <div id="content">
+                {% block aside %}{% endblock %}
+                {% block content %}{% endblock %}
+            </div>
+            {% include "public/footer.html" %}
+        </div>
+    </body>
+</html>
