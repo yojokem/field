@@ -171,6 +171,6 @@ class RouteModel {
     }
 }
 
-a = new RouteModel("#TEST", "TESTTEST");
+// a = new RouteModel("#TEST", "TESTTEST");
 
 module.exports = RouteModel;

@@ -10,6 +10,11 @@ p.get("/", (req, res) => {
     res.render('ground');
 });
 
+p.get("/auth", (req, res) => {
+    defaultIndex.setLocal("b", "dwa");  //res.locals.b = "c";
+    res.render('user/auth');
+});
+
 new RouteModel("Default", "/");
 new RouteModel("Default", "/");
 new RouteModel("Default", "/");
