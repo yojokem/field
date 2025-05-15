@@ -2,26 +2,69 @@
 <html>
     <head>
         <title>{% block title %}{% endblock %}</title>
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <!-- Keywords -->
-        <meta name="keywords" content="양노환장" />
-        <meta name="keywords" content="노환장" />
-        <meta name="keywords" content="노환빌라" />
-        <meta name="description" content="양노환장 공식 웹 사이트입니다." />
-        <meta name="robots" content="noarchive" />
         <meta charset="UTF-8" />
+        {% block meta %}
+        <meta name="keywords" content="Field" />
+        <meta name="keywords" content="필드" />
+        <meta name="description" content="Field for anything" />
+        <meta name="robots" content="noarchive" />
+        {% endblock %}
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
         <link rel="stylesheet" type="text/css" href="/styles/semantic/semantic.min.css" />
         <script type="text/javascript" src="/styles/semantic/semantic.min.js"></script>
+        {% block externalCDN %}
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        {% endblock %}
+        {% block style_scripts %}
+        <link rel="stylesheet" type="text/css" href="/styles/default.css" />
+        <script type="text/javascript" src="/scripts/init.js"></script>
+        {% endblock %}
     </head>
     <body>
-        <div>
-            <div id="alert"></div>
-            {% include "public/header.html" %}
-            <div id="content">
-                {% block aside %}{% endblock %}
-                {% block content %}{% endblock %}
+        {% block alert %}<div id="alert"></div>{% endblock %}
+        {% include "public/header.html" %}
+        {% block fullContent %}
+        <div class="ui equal width grid container">
+            <div class="stretched row">
+                <div class="column">
+                    {% block aside %}
+                    <div class="ui segment">
+                        <div class="ui card">
+                            <div class="content">
+                                <img class="right floated mini ui image" src="" />
+                                <div class="header">
+                                    Elliot Fu
+                                </div>
+                                <div class="meta">
+                                    Friends of Veronika
+                                </div>
+                                <div class="description">
+                                    Elliot requested permission to view your contact details
+                                </div>
+                            </div>
+                            <div class="extra content">
+                                <div class="ui two buttons">
+                                    <div class="ui basic green button">Approve</div>
+                                    <div class="ui basic red button">Decline</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="messageBox" class="ui one column grid">
+                            <div class="column">dwa</div>
+                            <div class="column">dwa</div>
+                            <div class="column">dwa</div>
+                        </div>
+                    </div>
+                    {% endblock %}
+                </div>
+                <div class="twelve wide column">
+                    {% block content %}{% endblock %}
+                </div>
             </div>
-            {% include "public/footer.html" %}
         </div>
+        {% endblock %}
+        {% include "public/footer.html" %}
     </body>
 </html>

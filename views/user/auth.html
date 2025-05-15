@@ -2,7 +2,30 @@
 
 {% block title %}Field ∥ Auth{% endblock %}
 
-{% block content %}
-  <h1>환영ddwa합니다!</h1>
-  <p>출결, 회비, 일정 등을 한 곳에서 관리하세요.</p>
+{% block aside %}{% endblock %}
+
+{% block fullContent %}
+<div id="auth" class="ui one column stackable centered grid full_grid">
+  <div class="row middle aligned">
+    <div class="seven wide column">
+      <form id="loginForm" name="loginForm" class="ui large form">
+        <div class="ui stack segment">
+          <div class="field">
+            <div id="username0" class="ui labeled large left icon input">
+              <i class="user icon"></i>
+              <input id="username" name="username" type="text" placeholder="사용자명" spellcheck="false" data-ms-editor="true" />
+            </div>
+          </div>
+          <div class="field">
+            <div id="password0" class="ui labeled large left icon input">
+              <i class="key icon"></i>
+              <input id="password" name="password" type="password" placeholder="비밀번호" />
+            </div>
+          </div>
+          <div class="ui fluid large teal submit button">로그인</div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 {% endblock %}
