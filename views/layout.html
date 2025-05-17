@@ -30,14 +30,22 @@
             <div class="stretched row">
                 <div class="column">
                     {% block aside %}
-                    <div class="ui segment">
-                        <div class="ui card">
-                            {% include "public/profileS.html" %}
-                        </div>
-                        <div id="messageBox" class="ui one column grid">
-                            <div class="column">dwa</div>
-                            <div class="column">dwa</div>
-                            <div class="column">dwa</div>
+                    <div class="ui segments">
+                        <div class="ui segment">
+                            <div class="ui card">
+                                {% include "public/profileS.html" %}
+                            </div>
+                            <div id="messageBox" class="ui one column grid">
+                                <div class="column">
+                                    <div class="ui piled segment">
+                                        <p>dwadaw</p>
+                                        <p>dwadaw</p>
+                                        <p>dwadaw</p>
+                                    </div>
+                                </div>
+                                <div class="column">dwa</div>
+                                <div class="column">dwa</div>
+                            </div>
                         </div>
                     </div>
                     {% endblock %}
