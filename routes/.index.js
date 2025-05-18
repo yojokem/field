@@ -50,7 +50,7 @@ class RouteModel {
      * @returns {?} the value in the locals with the given key
      */
     getLocal(key) {
-        if(key in Object.keys(this.#locals))
+        if(Object.keys(this.#inLocals()).indexOf(key) >= 0)
             return this.#locals[key];
         else {
             console.error(`[ERR-SW] RouteModel 〔${this.name}〕: Key for the locals '${key}' does not exist.`);
@@ -91,8 +91,10 @@ class RouteModel {
     setLocal(key, value) {
         this.setProximalLocal(key, value, 0);
     }
+    /* 초기 getLocal은 null, set 이후 globally applied. */
 
     // Scope relayed delay; 광범위하게 공시되는 실시간 데이터
+    // render 이후로 미룰 수도 없고, 어떻게 하지?
     /**
      * 
      * @param {Function} callback 
@@ -116,7 +118,7 @@ class RouteModel {
      * @param {express.Router} router
      */
     set router(router) {
-        console.log("The alteration of router for the RouteModel is not allowed.");
+        console.warn("The alteration of router for the RouteModel is not allowed.");
         return false;
     }
 
@@ -151,7 +153,13 @@ class RouteModel {
      * @param {Express} application 
      */
     apply(application) {
-        application.use(this._route, this.#router);
+        try {
+            application.use(this._route, this.#router);   
+            console.info(`☆ RouteModel 〔${this.name}〕 has been installed at the server.`); 
+        } catch (error) {
+            console.error(`[ERR-SW] RouteModel 〔${this.name}〕 cannot be installed at the server.`);
+            console.error(error);
+        }
     }
 
     /**

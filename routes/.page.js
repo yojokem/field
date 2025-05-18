@@ -1,6 +1,6 @@
 const getParams = require("../utils/params");
 
-const models = [];
+const pages = [];
 const pathRegExp = /(\/[^\s]*)?$/u;
 const fileRegExp = /(\/[^\s]*)?((\.)[\w]+){1}$/u;
 
@@ -11,12 +11,10 @@ class Page {
 
     constructor(title, path) {
         this.title = title;
-        console.log(`Page 〈${this.path}〉 '${this.title}' is being initialized.`);
-
         this.path = path;
-        
-        models.push(this);
-        console.info(`Page '${this.title}' defined.`);
+        pages.push(this);
+
+        console.log(`Page 〈${this.path}〉 '${this.title}' is defined.`);
     }
 
     get path() {
@@ -57,17 +55,17 @@ class Page {
     /**
      * Check the singularity of the name for a Page.
      * @param {String} name the name of a Page
-     * @returns whether there is no same name in the registered models.
+     * @returns whether there is no same name in the registered pages.
      */
     static checkSingularity(name) {
-        return models.filter(x => x.name == name.trim()).length <= 0
+        return pages.filter(x => x.name == name.trim()).length <= 0
     }
 
     /**
      * @returns {Array<Page>} arrays of Pages
      */
     static registeredOnes() {
-        return models;
+        return pages;
     }
 
     /**

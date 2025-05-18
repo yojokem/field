@@ -41,7 +41,7 @@ require("./field.session")(app); //Session
  */
 
 const indexRoute = require("./routes/");
-indexRoute[0].apply(app);
+indexRoute.forEach(l => l.apply(app));
 
 /* ******************* */
 
