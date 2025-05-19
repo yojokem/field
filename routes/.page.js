@@ -15,6 +15,10 @@ class Page {
         pages.push(this);
 
         console.log(`Page 〈${this.path}〉 '${this.title}' is defined.`);
+        this.addMiddleware(function(req, res, next) {
+            res.locals['title'] = this.title;
+            next();
+        })
     }
 
     get path() {
@@ -52,6 +56,11 @@ class Page {
         this._middlewares = this.middlewares.filter(x => x !== middleware);
     }
 
+    async pass(req, res, next) {
+        let middlewares = this.middlewares();
+        
+    }
+
     /**
      * Check the singularity of the name for a Page.
      * @param {String} name the name of a Page
@@ -72,7 +81,7 @@ class Page {
      * @param {Function} mw middleware
      */
     static checkMiddlewareParameters(mw) {
-        let params = getParams(middleware);
+        let params = getParams(mw);
         
         let normal = ['req', 'res', 'next'];
         let errors = ['err', 'req', 'res', 'next'];

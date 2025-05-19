@@ -5,6 +5,7 @@ const models = [];
 class RouteModel {
     #express = express;
     #router = this.#express.Router();
+    #experimental = false;
     _route = "/";
 
     /**
@@ -111,6 +112,7 @@ class RouteModel {
      * @returns {express.Router}
      */
     get router() {
+        this.#before = true;
         return this.#router;
     }
 
@@ -146,6 +148,24 @@ class RouteModel {
         if(RouteModel.checkSingularity(k)) this._name = k;
         else throw new Error(`The given name for the RouteModel for ${this.route}`);
         return this._name != p;
+    }
+
+    #done = false;
+    #before = false;
+
+    set experimental(tf) {
+        if(this.#done)
+            throw new Error(`The experimental setting for RouteModel 〔${this.name}〕 is already set: ${this.experimental}`);
+        
+        if(this.#before)
+            throw new Error(`RouteModel 〔${this.name}〕 is being called from the outside.`);
+
+        this.#experimental = tf;
+        this.#done = true;
+    }
+
+    get experimental() {
+        return this.#experimental;
     }
 
     /**
