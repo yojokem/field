@@ -1,3 +1,4 @@
+const { Router } = require("express");
 const getParams = require("../utils/params");
 
 const pages = [];
@@ -15,8 +16,13 @@ class Page {
         pages.push(this);
 
         console.log(`Page 〈${this.path}〉 '${this.title}' is defined.`);
+
+        let local = this;
         this.addMiddleware(function(req, res, next) {
-            res.locals['title'] = this.title;
+            console.log(res.locals['title']);
+            res.locals['title'] = local.title;
+            console.log(req.session.id);
+            console.log(res.locals['title']);
             next();
         })
     }
@@ -56,9 +62,13 @@ class Page {
         this._middlewares = this.middlewares.filter(x => x !== middleware);
     }
 
-    async pass(req, res, next) {
-        let middlewares = this.middlewares();
-        
+    /**
+     * 
+     * @param {Router} router 
+     */
+    async pass(router) {
+        let middlewares = this.middlewares;
+        middlewares.forEach(x => router.use(x));
     }
 
     /**

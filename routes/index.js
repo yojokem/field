@@ -8,6 +8,7 @@ defaultIndex.setLocal("title", "FIELD");
 let p = defaultIndex.router;
 
 const PageGround = new Page("Field ∥ set-ground", 'ground');
+PageGround.pass(p)
 p.get("/", (req, res) => {
     defaultIndex.setLocal("b", "dwa");  //res.locals.b = "c";
     res.render(PageGround.path);
