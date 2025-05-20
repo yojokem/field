@@ -24,7 +24,7 @@ switch(process.env.mode) {
 function allocate(app) {
     app.use(session({
         name: 'session-c-field',
-        secret: 'dwadasfafsdfsdfa23432sfdga#@%#Dgnfvs d 안녕 시발새끼들아!!',
+        secret: 'dwadasfafsdfsdfa23432sfdga#@%#Dgnfvs d 안녕 시2발새끼들아!!',
         resave: false,
         saveUninitialized: true,
         cookie: {

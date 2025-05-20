@@ -22,7 +22,6 @@ class RouteModel {
             let local = this;
             this.router.use((req, res, next) => {
                 res.locals = local.#inLocals();
-                console.log("D " + res.locals['title']);
                 next();
             });
             console.info(`RouteModel 〔${name}〕[${this._route}] defined.`);

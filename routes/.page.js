@@ -19,10 +19,7 @@ class Page {
 
         let local = this;
         this.addMiddleware(function(req, res, next) {
-            console.log(res.locals['title']);
             res.locals['title'] = local.title;
-            console.log(req.session.id);
-            console.log(res.locals['title']);
             next();
         })
     }
