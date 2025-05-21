@@ -12,11 +12,11 @@
         {% endblock %}
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-        <link rel="stylesheet" type="text/css" href="/styles/semantic/semantic.min.css" />
-        <script type="text/javascript" src="/styles/semantic/semantic.min.js"></script>
         {% block externalCDN %}
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         {% endblock %}
+        <link rel="stylesheet" type="text/css" href="/styles/semantic/semantic.min.css" />
+        <script type="text/javascript" src="/styles/semantic/semantic.min.js"></script>
         {% block style_scripts %}
         <link rel="stylesheet" type="text/css" href="/styles/default.css" />
         <script type="text/javascript" src="/scripts/init.js"></script>
@@ -31,12 +31,18 @@
             <div class="stretched row">
                 <div class="column">
                     {% block aside %}
-                    <div class="ui segments">
+                    <div class="ui mobile hidden container segments">
                         <div class="ui segment">
-                            <div class="ui card">
+                            <div id="profile" class="ui card">
                                 {% include "public/profileS.html" %}
                             </div>
-                            <div id="messageBox" class="ui one column grid">
+                            <div id="messages" class="ui container">
+                                <div class="ui tiny message">
+                                    <div class="header">daw</div>
+                                    dwa
+                                </div>
+                            </div>
+                            <div id="links" class="ui one column grid">
                                 <div class="column">
                                     <div class="ui piled segment">
                                         <p>dwadaw</p>
@@ -59,4 +65,5 @@
         {% endblock %}
         {% include "public/footer.html" %}
     </body>
+    {% block postscript %}{% endblock %}
 </html>

@@ -1,3 +1,5 @@
+// 이거 변수 하나인 경우에 괄호 없이 정의된 anonymous function 같은 것들은 어떻게 처리할 수가 없네?
+
 // JavaScript program to get the function
 // name/values dynamically
 function getParams(func) {

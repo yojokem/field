@@ -1,8 +1,6 @@
 {% extends "layout.html" %}
 
-{% block aside %}{% endblock %}
-
-{% block fullContent %}
+{% block content %}
 <div id="auth" class="ui one column stackable centered grid full_grid">
   <div class="row middle aligned">
     <div class="three wide column">
@@ -46,7 +44,7 @@
           <div class="field">
             <div id="password1" class="ui labeled large left icon input">
               <i class="key icon"></i>
-              <input id="" name="username" type="text" placeholder="" spellcheck="false" data-ms-editor="true" />
+              <input id="" name="" type="text" placeholder="" spellcheck="false" data-ms-editor="true" />
             </div>
           </div>
           <div class="ui fluid large teal submit button">회원 가입</div>
@@ -55,4 +53,10 @@
     </div>
   </div>
 </div>
+{% endblock %}
+
+{% block postscript %}
+<script type="text/javascript">
+  $('#profile').html("");
+</script>
 {% endblock %}
