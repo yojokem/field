@@ -2,56 +2,64 @@
 
 {% block content %}
 <div id="auth" class="ui one column stackable centered grid full_grid">
+  {% block access %}
+  {% if(access) %}
   <div class="row middle aligned">
     <div class="three wide column">
-      <h3 class="ui header">로그인</h3>
-      <form id="loginForm" name="loginForm" class="ui large form">
-        <div class="ui stack segment">
-          <div class="field">
-            <div id="username0" class="ui labeled large left icon input">
-              <i class="user icon"></i>
-              <input id="username" name="username" type="text" placeholder="사용자명" spellcheck="false" data-ms-editor="true" />
+        <h3 class="ui header">로그인</h3>
+        <form id="loginForm" name="loginForm" class="ui large form">
+            <div class="ui stack segment">
+            <div class="field">
+                <div id="username0" class="ui labeled large left icon input">
+                <i class="user icon"></i>
+                <input id="username" name="username" type="text" placeholder="사용자명" spellcheck="false" data-ms-editor="true" />
+                </div>
             </div>
-          </div>
-          <div class="field">
-            <div id="password0" class="ui labeled large left icon input">
-              <i class="key icon"></i>
-              <input id="password" name="password" type="password" placeholder="비밀번호" />
+            <div class="field">
+                <div id="password0" class="ui labeled large left icon input">
+                <i class="key icon"></i>
+                <input id="password" name="password" type="password" placeholder="비밀번호" />
+                </div>
             </div>
-          </div>
-          <div class="ui fluid large teal submit button">로그인</div>
-        </div>
-      </form>
+            <div class="ui fluid large teal submit button">로그인</div>
+            </div>
+        </form>
     </div>
   </div>
+  {% endif %}
+  {% endblock %}
+  {% block enregister %}
+  {% if(enregister) %}
   <div class="row middle aligned">
     <div class="five wide column">
-      <h3 class="ui header">회원 가입</h3>
-      <form id="registerForm" name="registerForm" class="ui large form">
-        <div class="ui stack segment">
-          <div class="field">
-            <div id="username1" class="ui labeled large left icon input">
-              <i class="user icon"></i>
-              <input id="username" name="username" type="text" placeholder="사용자명" spellcheck="false" data-ms-editor="true" />
+        <h3 class="ui header">회원 가입</h3>
+        <form id="registerForm" name="registerForm" class="ui large form">
+            <div class="ui stack segment">
+            <div class="field">
+                <div id="username1" class="ui labeled large left icon input">
+                <i class="user icon"></i>
+                <input id="username" name="username" type="text" placeholder="사용자명" spellcheck="false" data-ms-editor="true" />
+                </div>
             </div>
-          </div>
-          <div class="field">
-            <div id="password1" class="ui labeled large left icon input">
-              <i class="key icon"></i>
-              <input id="password" name="password" type="password" placeholder="비밀번호" />
+            <div class="field">
+                <div id="password1" class="ui labeled large left icon input">
+                <i class="key icon"></i>
+                <input id="password" name="password" type="password" placeholder="비밀번호" />
+                </div>
             </div>
-          </div>
-          <div class="field">
-            <div id="password1" class="ui labeled large left icon input">
-              <i class="key icon"></i>
-              <input id="" name="" type="text" placeholder="" spellcheck="false" data-ms-editor="true" />
+            <div class="field">
+                <div id="password1" class="ui labeled large left icon input">
+                <i class="key icon"></i>
+                <input id="" name="" type="text" placeholder="" spellcheck="false" data-ms-editor="true" />
+                </div>
             </div>
-          </div>
-          <div class="ui fluid large teal submit button">회원 가입</div>
-        </div>
-      </form>
+            <div class="ui fluid large teal submit button">회원 가입</div>
+            </div>
+        </form>
     </div>
   </div>
+  {% endif %}
+  {% endblock %}
 </div>
 {% endblock %}
 

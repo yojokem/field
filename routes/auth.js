@@ -4,6 +4,8 @@ const Page = require("./.page");
 const auth = new RouteModel("Auth", "/auth");
 
 auth.setLocal("title", "Field ∥ 0Auth0");
+auth.setLocal("access", 0);
+auth.setLocal("enregister", 0);
 
 let p = auth.router;
 
@@ -14,8 +16,16 @@ p.get("/", (req, res) => {
     res.render(PageUser_Auth.path);
 });
 
-p.get("/auth", (req, res) => {
-    
+p.get("/access", (req, res) => {
+    res.locals["access"] = true;
+    res.locals["enregister"] = false;
+    res.render(PageUser_Auth.path);
+})
+
+p.get("/enregister", (req, res) => {
+    res.locals["access"] = false;
+    res.locals["enregister"] = true;
+    res.render(PageUser_Auth.path);
 });
 
 module.exports = auth;

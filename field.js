@@ -3,6 +3,7 @@ const path = require("path");
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const helmet = require("helmet");
 const nunjucks = require("nunjucks");
 
 /* Load */
@@ -25,7 +26,18 @@ app.set('views', path.join(__dirname, "views"));
  * Middleware Lineages
  */
 
-app.use(logger('dev'));
+switch(process.env.mode) {
+    case "prod":
+        app.use(logger('combined'));
+        app.use(helmet({
+            contentSecurityPolicy: false
+        }));
+        break;
+    default:
+        app.use(logger('dev'));
+        break;
+}
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({
