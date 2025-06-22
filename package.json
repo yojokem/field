@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/yojokem/field#readme",
   "dependencies": {
+    "@types/express": "^5.0.3",
     "chokidar": "^3.6.0",
     "cookie-parser": "^1.4.7",
     "express": "^4.21.2",
@@ -33,7 +34,12 @@
     "typeorm": "^0.3.24"
   },
   "devDependencies": {
+    "@types/cookie-parser": "^1.4.9",
+    "@types/helmet": "^0.0.48",
+    "@types/morgan": "^1.9.10",
     "@types/node": "^22.15.21",
+    "@types/nunjucks": "^3.2.6",
+    "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   }
 }
