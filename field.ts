@@ -1,10 +1,9 @@
 import path from "path";
 import express from 'express';
 import cookieparser from 'cookie-parser';
-const cookieParser = require("cookie-parser");
-const logger = require("morgan");
-const helmet = require("helmet");
-const nunjucks = require("nunjucks");
+import logger from 'morgan';
+import helmet from 'helmet';
+import nunjucks from 'nunjucks';
 
 /* Load */
 
@@ -38,7 +37,7 @@ switch(process.env.mode) {
         break;
 }
 
-app.use(cookieParser());
+app.use(cookieparser());
 app.use(express.json());
 app.use(express.urlencoded({
     extended: false

@@ -20,6 +20,9 @@
   "homepage": "https://github.com/yojokem/field#readme",
   "dependencies": {
     "@types/express": "^5.0.3",
+    "@types/express-mysql-session": "^3.0.6",
+    "@types/express-session": "^1.18.2",
+    "@types/session-file-store": "^1.2.5",
     "chokidar": "^3.6.0",
     "cookie-parser": "^1.4.7",
     "express": "^4.21.2",
@@ -30,8 +33,9 @@
     "morgan": "^1.10.0",
     "mysql2": "^3.14.1",
     "nunjucks": "^3.2.4",
+    "reflect-metadata": "^0.2.2",
     "session-file-store": "^1.5.0",
-    "typeorm": "^0.3.24"
+    "typeorm": "^0.3.25"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.9",

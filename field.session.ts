@@ -1,11 +1,11 @@
-const session = require("express-session");
+import session from "express-session";
+import FileStore from "session-file-store";
+import MySQLStore from "express-mysql-session";
+import { Express } from "express";
 
-let store;
+let store: session.Store;
 
 switch(process.env.mode) {
-    case "dev":
-        store = new (require("session-file-store")(session))();
-        break;
     case "prod":
         const options = {
             host: "",
@@ -14,17 +14,17 @@ switch(process.env.mode) {
             password: "",
             database: ""
         };
-        store = new (require("express-mysql-session")(session))(options);
+        store = (new (MySQLStore as any)(session))(options);
         break;
     default:
-        store = new (require("session-file-store")(session))();
+        store = (new (FileStore as any)(session))();
         break;
 }
 
-function allocate(app) {
+function allocate(app: Express) {
     app.use(session({
         name: 'session-c-field',
-        secret: 'dwadasfafsdfsdfa23432sfdga#@%#Dgnfvs d 안녕 시2발새끼들아!!',
+        secret: 'dwadasfafsdfsdfa23432sfddbb1Ag하Φdga#@%#Dgnfvs d 안녕 시2발새끼들아!!',
         resave: false,
         saveUninitialized: true,
         cookie: {
