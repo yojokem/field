@@ -1,4 +1,4 @@
-const languages = [];
+const languages: Language[] = [];
 
 class Language {
     #name = '';
@@ -12,7 +12,7 @@ class Language {
      * @param {String} name 
      * @param {String} short 
      */
-    constructor(name, short) {
+    constructor(name: string, short: string) {
         try {
             name = new String(name).trim();
             short = new String(short).trim();
@@ -38,7 +38,6 @@ class Language {
         let k = new String(name).trim();
         if(Language.checkSingularity(k)) this.#name = k;
         else throw new Error(`The Language ${this.name}(${this.#short}) already settled once.`);
-        return this.#name != p;
     }
 
     get short() {
@@ -50,7 +49,6 @@ class Language {
         let k = new String(short).trim();
         if(Language.checkSingularityShortly(k)) this.#short = k;
         else throw new Error(`The Language ${this.name}(${this.#short}) already settled once.`);
-        return this.#short != p;
     }
 
     /**
@@ -58,11 +56,11 @@ class Language {
      * @param {String} name the name of a Language
      * @returns whether there is no same name in the registered languages.
      */
-    static checkSingularity(name) {
+    static checkSingularity(name: string) {
         return languages.filter(x => x.name == name.trim()).length <= 0
     }
 
-    static checkSingularityShortly(short) {
+    static checkSingularityShortly(short: string) {
         return languages.filter(x => x.short == short.trim()).length <= 0
     }
 

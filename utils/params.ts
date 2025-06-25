@@ -2,7 +2,7 @@
 
 // JavaScript program to get the function
 // name/values dynamically
-function getParams(func) {
+export function getParams(func: Function) {
 
 	// String representation of the function code
 	let str = func.toString();
@@ -25,7 +25,7 @@ function getParams(func) {
 
 	let result = str.substring(start, end).split(", ");
 
-	let params = [];
+	let params: string[] = [];
 
 	result.forEach(element => {
 
@@ -38,8 +38,6 @@ function getParams(func) {
 
 	return params;
 }
-
-module.exports = getParams;
 
 /* Test sample functions
 let fun1 = function (a) { };
