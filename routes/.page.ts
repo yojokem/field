@@ -1,16 +1,16 @@
-const { Router } = require("express");
+import { Router, Request, Response, RequestHandler, NextFunction } from "express";
 const getParams = require("../utils/params");
 
-const pages = [];
+const pages: Page[] = [];
 const pathRegExp = /(\/[^\s]*)?$/u;
 const fileRegExp = /(\/[^\s]*)?((\.)[\w]+){1}$/u;
 
-class Page {
+export class Page {
     title = '';
     _path = '';
-    _middlewares = [];
+    _middlewares: RequestHandler[] = [];
 
-    constructor(title, path) {
+    constructor(title: string, path: string) {
         this.title = title;
         this.path = path;
         pages.push(this);
@@ -18,10 +18,10 @@ class Page {
         console.log(`Page 〈${this.path}〉 '${this.title}' is defined.`);
 
         let local = this;
-        this.addMiddleware(function(req, res, next) {
+        this.addMiddleware(async (req: Request, res: Response, next: NextFunction) => {
             res.locals['title'] = local.title;
             next();
-        })
+        });
     }
 
     get path() {
@@ -38,22 +38,22 @@ class Page {
     }
 
     /**
-     * @param {Function} middleware 
+     * @param {RequestHandler} middleware 
      */
-    addMiddleware(middleware) {
-        if(typeof middleware !== 'function') throw new Error(`Page ${this.title} could not handle the given middleware: ${middleware.toString()}`);
+    addMiddleware(middleware: RequestHandler) {
+        if(typeof middleware !== 'function') throw new Error(`Page ${this.title} could not handle the given middleware: ${String(middleware)}`);
 
         if(Page.checkMiddlewareParameters(middleware)) this._middlewares.push(middleware);
         else throw new Error(``);
     }
 
     /**
-     * @param {Function} middleware 
+     * @param {RequestHandler} middleware 
      */
-    removeMiddleware(middleware) {
-        if(typeof middleware !== 'function') throw new Error(`Page ${this.title} could not handle the given middleware: ${middleware.toString()}`);
+    removeMiddleware(middleware: RequestHandler) {
+        if(typeof middleware !== 'function') throw new Error(`Page ${this.title} could not handle the given middleware: ${String(middleware)}`);
 
-        index = this._middlewares.indexOf(middleware);
+        let index = this._middlewares.indexOf(middleware);
         if(index < 0) throw new Error(``);
         
         this._middlewares = this.middlewares.filter(x => x !== middleware);
@@ -63,18 +63,18 @@ class Page {
      * 
      * @param {Router} router 
      */
-    async pass(router) {
+    async pass(router: Router) {
         let middlewares = this.middlewares;
         middlewares.forEach(x => router.use(x));
     }
 
     /**
      * Check the singularity of the name for a Page.
-     * @param {String} name the name of a Page
+     * @param {String} path the path of a Page
      * @returns whether there is no same name in the registered pages.
      */
-    static checkSingularity(name) {
-        return pages.filter(x => x.name == name.trim()).length <= 0
+    static checkSingularity(path: string) {
+        return pages.filter(x => x.path == path.trim()).length <= 0
     }
 
     /**
@@ -87,8 +87,8 @@ class Page {
     /**
      * @param {Function} mw middleware
      */
-    static checkMiddlewareParameters(mw) {
-        let params = getParams(mw);
+    static checkMiddlewareParameters(mw: Function) {
+        let params: string[] = getParams(mw);
         
         let normal = ['req', 'res', 'next'];
         let errors = ['err', 'req', 'res', 'next'];
@@ -96,5 +96,3 @@ class Page {
         return !(params.filter(x => !normal.includes(x)).length > 0 || params.filter(x => !errors.includes(x)).length > 0);
     }
 }
-
-module.exports = Page;

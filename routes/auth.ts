@@ -9,7 +9,7 @@ auth.setLocal("title", "Field ∥ 0Auth0");
 auth.setLocal("access", 0);
 auth.setLocal("enregister", 0);
 
-let p = auth.router;
+export let p = auth.router;
 
 const PageUser_Auth = new Page("Field ∥ Auth", 'user/auth');
 PageUser_Auth.pass(p);
@@ -29,5 +29,3 @@ p.get("/enregister", (req: Request, res: Response) => {
     res.locals["enregister"] = true;
     res.render(PageUser_Auth.path);
 });
-
-module.exports = auth;

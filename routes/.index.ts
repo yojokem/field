@@ -2,7 +2,7 @@ import express, { Router } from "express";
 
 const models: RouteModel[] = [];
 
-class RouteModel {
+export class RouteModel {
     #express = express;
     #router: Router = this.#express.Router();
     #experimental: boolean = false;
@@ -199,5 +199,3 @@ class RouteModel {
 }
 
 // a = new RouteModel("#TEST", "TESTTEST");
-
-module.exports = RouteModel;

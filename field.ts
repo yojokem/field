@@ -1,4 +1,4 @@
-import path from "path";
+import * as path from "path";
 import express from 'express';
 import cookieparser from 'cookie-parser';
 import logger from 'morgan';

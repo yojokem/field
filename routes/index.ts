@@ -1,7 +1,6 @@
-import {Request, Response} from 'express';
-
-const RouteModel = require("./.index");
-const Page = require("./.page");
+import { Request, Response } from 'express';
+import { RouteModel } from './.index';
+import { Page } from './.page';
 
 const defaultIndex = new RouteModel("Default", "/");
 
@@ -28,7 +27,9 @@ p.get("/auth", (req: Request, res: Response) => {
 //new RouteModel("Default", "/");
 //new RouteModel("Default", "/");
 
-module.exports = [
-    defaultIndex,
-    require("./auth")
-];
+import * as auth from './auth';
+const R_auth = auth.p;
+
+export {
+    defaultIndex, R_auth
+};
