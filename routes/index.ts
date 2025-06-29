@@ -28,8 +28,6 @@ p.get("/auth", (req: Request, res: Response) => {
 //new RouteModel("Default", "/");
 
 import * as auth from './auth';
-const R_auth = auth.p;
+const R_auth = auth.auth;
 
-export {
-    defaultIndex, R_auth
-};
+export const LISTS = [defaultIndex, R_auth];

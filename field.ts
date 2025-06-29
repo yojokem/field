@@ -15,7 +15,7 @@ const PORT = process.env.PORT;
  */
 
 app.set('view engine', 'html');
-nunjucks.configure('views', {
+nunjucks.configure(path.join(__dirname, "views"), {
     express: app,
     watch: true,
 });
@@ -51,8 +51,9 @@ require("./field.session")(app); //Session
  * Router Registration
  */
 
-const indexRoute = require("./routes/");
-indexRoute.forEach((l: any) => l.apply(app));
+import { RouteModel } from './routes/.index';
+import * as ROUTES from './routes';
+ROUTES.LISTS.forEach((l: RouteModel) => l.apply(app));
 
 /* ******************* */
 

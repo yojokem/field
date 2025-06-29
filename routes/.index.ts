@@ -1,4 +1,4 @@
-import express, { Router } from "express";
+import express, { Express, Router } from "express";
 
 const models: RouteModel[] = [];
 
@@ -6,7 +6,7 @@ export class RouteModel {
     #express = express;
     #router: Router = this.#express.Router();
     #experimental: boolean = false;
-    _name: string;
+    _name;
     _route: string[] = ["/"];
 
     /**
@@ -31,7 +31,7 @@ export class RouteModel {
         }
     }
 
-    #locals = {};
+    #locals: Record<string, unknown> = {};
     pages = [];
 
     /**
@@ -51,7 +51,7 @@ export class RouteModel {
      * @param {String} key the key for the locals
      * @returns {?} the value in the locals with the given key
      */
-    getLocal(key) {
+    getLocal(key: string) {
         if(Object.keys(this.#inLocals()).indexOf(key) >= 0)
             return this.#locals[key];
         else {
@@ -66,7 +66,7 @@ export class RouteModel {
      * @param {?} value the value for the popup of the data upon the key in the locals
      * @returns {?} the value before popup of the data upon the key in the locals
      */
-    popupLocal(key, value) {
+    popupLocal(key: string, value: any) {
         let p = this.getLocal(key);
         this.#locals[key] = value;
         return p;
@@ -78,10 +78,8 @@ export class RouteModel {
      * @param {?} value 
      * @param  {Function} callback 
      */
-    setProximalLocal(key, value, callback) {
-        if(callback != 0)
-            value = callback(value)
-
+    setProximalLocal(key: string, value: any, callback: Function) {
+        value = callback(value)
         this.#locals[key] = value;
     }
 
@@ -90,8 +88,8 @@ export class RouteModel {
      * @param {String} key 
      * @param {?} value 
      */
-    setLocal(key, value) {
-        this.setProximalLocal(key, value, 0);
+    setLocal(key: string, value: any) {
+        this.setProximalLocal(key, value, () => {});
     }
     /* 초기 getLocal은 null, set 이후 globally applied. */
 
@@ -103,7 +101,7 @@ export class RouteModel {
      * @param {String} key 
      * @param {Function} criteria 
      */
-    async setDistalLocal(callback, key, criteria) {
+    async setDistalLocal(callback: Function, key: string, criteria: Function) {
         let value = await callback();
         if(await criteria(value))
             this.#locals[key] = value;
@@ -171,7 +169,7 @@ export class RouteModel {
      * Apply the router to an express application instance.
      * @param {Express} application 
      */
-    apply(application) {
+    apply(application: Express) {
         try {
             application.use(this._route, this.#router);   
             console.info(`☆ RouteModel 〔${this.name}〕 has been installed at the server.`); 
@@ -186,7 +184,7 @@ export class RouteModel {
      * @param {String} name the name of a RouteModel
      * @returns whether there is no same name in the registered models.
      */
-    static checkSingularity(name) {
+    static checkSingularity(name: string) {
         return models.filter(x => x.name == name.trim()).length <= 0
     }
 

@@ -6,7 +6,7 @@ exports.getParams = getParams;
 // name/values dynamically
 function getParams(func) {
     // String representation of the function code
-    let str = func.toString();
+    let str = func.toString().trim();
     // Remove comments of the form /* ... */
     // Removing comments of the form //
     // Remove body of the function { ... }
@@ -19,7 +19,7 @@ function getParams(func) {
     // Start parameter names after first '('
     let start = str.indexOf("(") + 1;
     // End parameter names is just before last ')'
-    let end = str.length - 1;
+    let end = str.indexOf(")") /*str.length - 1*/;
     let result = str.substring(start, end).split(", ");
     let params = [];
     result.forEach(element => {

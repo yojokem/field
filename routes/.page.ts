@@ -1,5 +1,5 @@
 import { Router, Request, Response, RequestHandler, NextFunction } from "express";
-const getParams = require("../utils/params");
+import { getParams } from '../utils/params';
 
 const pages: Page[] = [];
 const pathRegExp = /(\/[^\s]*)?$/u;

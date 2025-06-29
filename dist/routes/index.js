@@ -33,11 +33,10 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.R_auth = exports.defaultIndex = void 0;
+exports.LISTS = void 0;
 const _index_1 = require("./.index");
 const _page_1 = require("./.page");
 const defaultIndex = new _index_1.RouteModel("Default", "/");
-exports.defaultIndex = defaultIndex;
 defaultIndex.setLocal("title", "FIELD");
 let p = defaultIndex.router;
 const PageGround = new _page_1.Page("Field ∥ set-ground", 'ground');
@@ -57,5 +56,5 @@ p.get("/auth", (req: Request, res: Response) => {
 //new RouteModel("Default", "/");
 //new RouteModel("Default", "/");
 const auth = __importStar(require("./auth"));
-const R_auth = auth.p;
-exports.R_auth = R_auth;
+const R_auth = auth.auth;
+exports.LISTS = [defaultIndex, R_auth];

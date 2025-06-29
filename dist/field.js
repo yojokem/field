@@ -49,7 +49,7 @@ const PORT = process.env.PORT;
  * View Engines
  */
 app.set('view engine', 'html');
-nunjucks_1.default.configure('views', {
+nunjucks_1.default.configure(path.join(__dirname, "views"), {
     express: app,
     watch: true,
 });
@@ -75,12 +75,8 @@ app.use(express_1.default.urlencoded({
 }));
 app.use(express_1.default.static(path.join(__dirname, "public")));
 require("./field.session")(app); //Session
-/* ******************* */
-/**
- * Router Registration
- */
-const indexRoute = require("./routes/");
-indexRoute.forEach((l) => l.apply(app));
+const ROUTES = __importStar(require("./routes"));
+ROUTES.LISTS.forEach((l) => l.apply(app));
 /* ******************* */
 console.info(`Field is mandatory to serve on the PORT ${PORT}`);
 app.listen(PORT, () => {

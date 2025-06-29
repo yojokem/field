@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Page = void 0;
-const getParams = require("../utils/params");
+const params_1 = require("../utils/params");
 const pages = [];
 const pathRegExp = /(\/[^\s]*)?$/u;
 const fileRegExp = /(\/[^\s]*)?((\.)[\w]+){1}$/u;
@@ -91,7 +91,7 @@ class Page {
      * @param {Function} mw middleware
      */
     static checkMiddlewareParameters(mw) {
-        let params = getParams(mw);
+        let params = (0, params_1.getParams)(mw);
         let normal = ['req', 'res', 'next'];
         let errors = ['err', 'req', 'res', 'next'];
         return !(params.filter(x => !normal.includes(x)).length > 0 || params.filter(x => !errors.includes(x)).length > 0);

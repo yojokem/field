@@ -1,15 +1,14 @@
-import {Request, Response} from 'express';
+import { Request, Response } from 'express';
+import { RouteModel } from './.index';
+import { Page } from './.page';
 
-const RouteModel = require("./.index");
-const Page = require("./.page");
-
-const auth = new RouteModel("Auth", "/auth");
+export const auth = new RouteModel("Auth", "/auth");
 
 auth.setLocal("title", "Field ∥ 0Auth0");
 auth.setLocal("access", 0);
 auth.setLocal("enregister", 0);
 
-export let p = auth.router;
+let p = auth.router;
 
 const PageUser_Auth = new Page("Field ∥ Auth", 'user/auth');
 PageUser_Auth.pass(p);

@@ -96,8 +96,7 @@ class RouteModel {
      * @param  {Function} callback
      */
     setProximalLocal(key, value, callback) {
-        if (callback != 0)
-            value = callback(value);
+        value = callback(value);
         __classPrivateFieldGet(this, _RouteModel_locals, "f")[key] = value;
     }
     /**
@@ -106,7 +105,7 @@ class RouteModel {
      * @param {?} value
      */
     setLocal(key, value) {
-        this.setProximalLocal(key, value, 0);
+        this.setProximalLocal(key, value, () => { });
     }
     /* 초기 getLocal은 null, set 이후 globally applied. */
     // Scope relayed delay; 광범위하게 공시되는 실시간 데이터
