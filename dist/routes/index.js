@@ -45,16 +45,8 @@ p.get("/", (req, res) => {
     defaultIndex.setLocal("b", "dwa"); //res.locals.b = "c";
     res.render(PageGround.path);
 });
-// root에 Page의 middlewares를 적용하면, 이게 root-related relative link에도 적용되는 middlewares가 될 것인가?
-/*
-p.get("/auth", (req: Request, res: Response) => {
-    defaultIndex.setLocal("b", "dwa");  //res.locals.b = "c";
-    res.render('user/auth');
-});
-*/
-//new RouteModel("Default", "/");
-//new RouteModel("Default", "/");
-//new RouteModel("Default", "/");
+// 의문점: root에 Page의 middlewares를 적용하면, 이게 root-related relative link에도 적용되는 middlewares가 될 것인가?
+//new RouteModel("Default", "/")
+// Load
 const auth = __importStar(require("./auth"));
-const R_auth = auth.auth;
-exports.LISTS = [defaultIndex, R_auth];
+exports.LISTS = [defaultIndex, auth.auth];
