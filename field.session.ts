@@ -21,7 +21,7 @@ switch(process.env.mode) {
         break;
 }
 
-function allocate(app: Express) {
+export function allocate(app: Express) {
     app.use(session({
         name: 'session-c-field',
         secret: 'dwadasfafsdfsdfa23432sfddbb1Ag하Φdga#@%#Dgnfvs d 안녕 시2발새끼들아!!',
@@ -35,5 +35,3 @@ function allocate(app: Express) {
         store: store
     }));
 }
-
-module.exports = allocate;

@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.allocate = allocate;
 const express_session_1 = __importDefault(require("express-session"));
 const session_file_store_1 = __importDefault(require("session-file-store"));
 const express_mysql_session_1 = __importDefault(require("express-mysql-session"));
@@ -36,4 +37,3 @@ function allocate(app) {
         store: store
     }));
 }
-module.exports = allocate;

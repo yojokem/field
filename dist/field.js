@@ -37,6 +37,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const path = __importStar(require("path"));
+require("reflect-metadata");
 const express_1 = __importDefault(require("express"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const morgan_1 = __importDefault(require("morgan"));
@@ -74,7 +75,8 @@ app.use(express_1.default.urlencoded({
     extended: false
 }));
 app.use(express_1.default.static(path.join(__dirname, "public")));
-require("./field.session")(app); //Session
+const field_session_1 = require("./field.session"); //Session
+(0, field_session_1.allocate)(app);
 const ROUTES = __importStar(require("./routes"));
 ROUTES.LISTS.forEach((l) => l.apply(app));
 /* ******************* */

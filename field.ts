@@ -1,4 +1,5 @@
 import * as path from "path";
+import "reflect-metadata";
 import express from 'express';
 import cookieparser from 'cookie-parser';
 import logger from 'morgan';
@@ -43,7 +44,8 @@ app.use(express.urlencoded({
     extended: false
 }));
 app.use(express.static(path.join(__dirname, "public")));
-require("./field.session")(app); //Session
+import { allocate } from './field.session'; //Session
+allocate(app);
 
 /* ******************* */
 
