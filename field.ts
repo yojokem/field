@@ -30,7 +30,7 @@ switch(process.env.mode) {
     case "prod":
         app.use(logger('combined'));
         app.use(helmet({
-            contentSecurityPolicy: false
+            contentSecurityPolicy: false,
         }));
         break;
     default:

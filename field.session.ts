@@ -1,7 +1,10 @@
+import * as session0 from "express-session";
 import session from "express-session";
 import FileStore from "session-file-store";
 import MySQLStore from "express-mysql-session";
 import { Express } from "express";
+import process from 'process';
+import * as path from 'path';
 
 let store: session.Store;
 
@@ -14,17 +17,20 @@ switch(process.env.mode) {
             password: "",
             database: ""
         };
-        store = (new (MySQLStore as any)(session))(options);
+        store = new (MySQLStore(session0))(options);
         break;
     default:
-        store = (new (FileStore as any)(session))();
+        store = new (FileStore(session))({
+            path: path.join(process.cwd(), "/sessions"),
+            reapInterval: 600
+        });
         break;
 }
 
 export function allocate(app: Express) {
     app.use(session({
         name: 'session-c-field',
-        secret: 'dwadasfafsdfsdfa23432sfddbb1Ag하Φdga#@%#Dgnfvs d 안녕 시2발새끼들아!!',
+        secret: 'dΘΛwadas¤‰ΘΘΘ23432Λsfddbb1Ag하Φdga#@%#Dgnfvs d 안녕 시2발새끼들아!!',
         resave: false,
         saveUninitialized: true,
         cookie: {

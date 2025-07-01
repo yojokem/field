@@ -62,7 +62,7 @@ switch (process.env.mode) {
     case "prod":
         app.use((0, morgan_1.default)('combined'));
         app.use((0, helmet_1.default)({
-            contentSecurityPolicy: false
+            contentSecurityPolicy: false,
         }));
         break;
     default:
