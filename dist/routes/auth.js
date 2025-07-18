@@ -11,6 +11,8 @@ let p = exports.auth.router;
 const PageUser_Auth = new _page_1.Page("Field ∥ Auth", 'user/auth');
 PageUser_Auth.pass(p);
 p.get("/", (req, res) => {
+    res.locals['access'] = false;
+    res.locals['enregister'] = false;
     res.render(PageUser_Auth.path);
 });
 p.get("/access", (req, res) => {
