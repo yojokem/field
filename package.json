@@ -1,50 +1,53 @@
 {
-  "name": "field",
-  "version": "1.0.0",
-  "description": "Service for groups looking for a playground",
-  "main": "field.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "developmental": "set mode=dev&&set PORT=3030&& node ./dist/field.js",
-    "production": "set mode=prod&&set PORT=80&& node ./dist/field.js",
-    "typeorm": "typeorm-ts-node-commonjs"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yojokem/field.git"
-  },
-  "author": "Frost Kim",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/yojokem/field/issues"
-  },
-  "homepage": "https://github.com/yojokem/field#readme",
-  "dependencies": {
-    "chokidar": "^3.6.0",
-    "cookie-parser": "^1.4.7",
-    "express": "^4.21.2",
-    "express-mysql-session": "^3.0.3",
-    "express-session": "^1.18.1",
-    "helmet": "^8.1.0",
-    "http-errors": "^2.0.0",
-    "morgan": "^1.10.0",
-    "mysql2": "^3.14.1",
-    "nunjucks": "^3.2.4",
-    "reflect-metadata": "^0.2.2",
-    "session-file-store": "^1.5.0",
-    "typeorm": "^0.3.25"
-  },
-  "devDependencies": {
-    "@types/express": "^5.0.3",
-    "@types/express-mysql-session": "^3.0.6",
-    "@types/express-session": "^1.18.2",
-    "@types/session-file-store": "^1.2.5",
-    "@types/cookie-parser": "^1.4.9",
-    "@types/helmet": "^0.0.48",
-    "@types/morgan": "^1.9.10",
-    "@types/node": "^22.15.21",
-    "@types/nunjucks": "^3.2.6",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
-  }
+   "name": "field",
+   "version": "0.0.1",
+   "description": "Service for groups looking for a playground",
+   "main": "field.js",
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "developmental": "set mode=dev&&set PORT=3030&& node ./dist/field.js",
+      "production": "set mode=prod&&set PORT=80&& node ./dist/field.js",
+      "typeorm": "typeorm-ts-node-commonjs",
+      "start": "ts-node src/field.ts"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/yojokem/field.git"
+   },
+   "author": "Frost Kim",
+   "license": "ISC",
+   "bugs": {
+      "url": "https://github.com/yojokem/field/issues"
+   },
+   "homepage": "https://github.com/yojokem/field#readme",
+   "dependencies": {
+      "chokidar": "^3.6.0",
+      "cookie-parser": "^1.4.7",
+      "express": "^4.21.2",
+      "express-mysql-session": "^3.0.3",
+      "express-session": "^1.18.1",
+      "get-intrinsic": "^1.3.0",
+      "helmet": "^8.1.0",
+      "http-errors": "^2.0.0",
+      "math-intrinsics": "^1.1.0",
+      "morgan": "^1.10.0",
+      "mysql2": "^3.14.0",
+      "nunjucks": "^3.2.4",
+      "reflect-metadata": "^0.2.2",
+      "session-file-store": "^1.5.0",
+      "typeorm": "0.3.25"
+   },
+   "devDependencies": {
+      "@types/node": "^22.13.10",
+      "ts-node": "^10.9.2",
+      "typescript": "^5.8.2",
+      "@types/cookie-parser": "^1.4.9",
+      "@types/express": "^5.0.3",
+      "@types/express-mysql-session": "^3.0.6",
+      "@types/express-session": "^1.18.2",
+      "@types/helmet": "^0.0.48",
+      "@types/morgan": "^1.9.10",
+      "@types/nunjucks": "^3.2.6",
+      "@types/session-file-store": "^1.2.5"
+   }
 }

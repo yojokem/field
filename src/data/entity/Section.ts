@@ -1,13 +1,13 @@
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity("section")
+@Entity({name: "section"})
 export class Section {
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column({type: "varchar", length: 255, nullable: false})
+    @Column({unique: true})
     name: string
 
-    @Column({type: "text", length: 1023, nullable: false})
+    
     desc: string
 }

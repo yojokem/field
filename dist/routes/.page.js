@@ -1,13 +1,4 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Page = void 0;
 const params_1 = require("../utils/params");
@@ -15,19 +6,19 @@ const pages = [];
 const pathRegExp = /(\/[^\s]*)?$/u;
 const fileRegExp = /(\/[^\s]*)?((\.)[\w]+){1}$/u;
 class Page {
+    title = '';
+    _path = '';
+    _middlewares = [];
     constructor(title, path) {
-        this.title = '';
-        this._path = '';
-        this._middlewares = [];
         this.title = title;
         this.path = path;
         pages.push(this);
         console.log(`Page 〈${this.path}〉 '${this.title}' is defined.`);
         let local = this;
-        this.addMiddleware((req, res, next) => __awaiter(this, void 0, void 0, function* () {
+        this.addMiddleware(async (req, res, next) => {
             res.locals['title'] = local.title;
             next();
-        }));
+        });
     }
     get path() {
         return this._path;
@@ -67,11 +58,9 @@ class Page {
      *
      * @param {Router} router
      */
-    pass(router) {
-        return __awaiter(this, void 0, void 0, function* () {
-            let middlewares = this.middlewares;
-            middlewares.forEach(x => router.use(x));
-        });
+    async pass(router) {
+        let middlewares = this.middlewares;
+        middlewares.forEach(x => router.use(x));
     }
     /**
      * Check the singularity of the name for a Page.
