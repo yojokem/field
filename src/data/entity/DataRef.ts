@@ -3,15 +3,10 @@ import { BinaryUuidColumn, BinaryUUuidColumn, PrimaryGeneratedBinaryUuidColumn, 
 import { default0 } from "./0default";
 
 @Entity({name: "dataref"})
-export class dataref0 {
-    @PrimaryGeneratedBinaryUuidColumn()
-    uid!: string;
-
+export class DataRef extends default0 {
+    @BinaryUuidColumn()
     @ManyToOne(() => default0, data => data.references)
     data: default0;
-
-    @Column({type: "varchar", unique: true})
-    name!: string;
 
     @SectionColumn()
     section!: string;

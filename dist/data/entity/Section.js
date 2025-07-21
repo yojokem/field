@@ -15,17 +15,21 @@ let Section = class Section {
 };
 exports.Section = Section;
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
-    __metadata("design:type", Number)
+    (0, typeorm_1.PrimaryColumn)({ type: "varchar", length: 5, nullable: false }),
+    __metadata("design:type", String)
 ], Section.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ unique: true }),
+    (0, typeorm_1.Column)({ type: "varchar", unique: true, nullable: false }),
     __metadata("design:type", String)
 ], Section.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "tinytext", charset: "utf-8" }),
+    (0, typeorm_1.Column)({ type: "tinytext", charset: "utf-8", nullable: false }),
     __metadata("design:type", String)
 ], Section.prototype, "desc", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: "varchar", nullable: true }),
+    __metadata("design:type", String)
+], Section.prototype, "effect", void 0);
 exports.Section = Section = __decorate([
     (0, typeorm_1.Entity)({ name: "section" })
 ], Section);
