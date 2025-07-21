@@ -1,30 +1,46 @@
 "use strict";
+var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+};
+var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+var _RouteModel_instances, _RouteModel_express, _RouteModel_router, _RouteModel_experimental, _RouteModel_locals, _RouteModel_inLocals, _RouteModel_done, _RouteModel_before;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RouteModel = void 0;
 const express_1 = __importDefault(require("express"));
 const models = [];
 class RouteModel {
-    #express = express_1.default;
-    #router = this.#express.Router();
-    #experimental = false;
-    _name;
-    _route = ["/"];
     /**
      * Define a RouteModel with given name and routes
      * @param {String} name the name of the RouteModel
      * @param  {...String} route Array of designated routes
      */
     constructor(name, ...route) {
+        _RouteModel_instances.add(this);
+        _RouteModel_express.set(this, express_1.default);
+        _RouteModel_router.set(this, __classPrivateFieldGet(this, _RouteModel_express, "f").Router());
+        _RouteModel_experimental.set(this, false);
+        this._route = ["/"];
+        _RouteModel_locals.set(this, {});
+        this.pages = [];
+        _RouteModel_done.set(this, false);
+        _RouteModel_before.set(this, false);
         try {
             this._name = name;
             this._route = route;
             models.push(this);
             let local = this;
             this.router.use((req, res, next) => {
-                res.locals = local.#inLocals();
+                res.locals = __classPrivateFieldGet(local, _RouteModel_instances, "m", _RouteModel_inLocals).call(local);
                 next();
             });
             console.info(`RouteModel 〔${name}〕[${this._route}] defined.`);
@@ -33,17 +49,12 @@ class RouteModel {
             console.error(`RouteModel 〔${name}〕[${this._route}] already exists.`);
         }
     }
-    #locals = {};
-    pages = [];
     /**
      * Get a copy of the locals in the RouteModel.
      * @returns {JSON} locals
      */
     get locals() {
-        return Object.assign(this.#locals);
-    }
-    #inLocals() {
-        return this.#locals;
+        return Object.assign(__classPrivateFieldGet(this, _RouteModel_locals, "f"));
     }
     /**
      * Get the value in the locals with a key.
@@ -51,8 +62,8 @@ class RouteModel {
      * @returns {?} the value in the locals with the given key
      */
     getLocal(key) {
-        if (Object.keys(this.#inLocals()).indexOf(key) >= 0)
-            return this.#locals[key];
+        if (Object.keys(__classPrivateFieldGet(this, _RouteModel_instances, "m", _RouteModel_inLocals).call(this)).indexOf(key) >= 0)
+            return __classPrivateFieldGet(this, _RouteModel_locals, "f")[key];
         else {
             console.error(`[ERR-SW] RouteModel 〔${this.name}〕: Key for the locals '${key}' does not exist.`);
             return null;
@@ -66,7 +77,7 @@ class RouteModel {
      */
     popupLocal(key, value) {
         let p = this.getLocal(key);
-        this.#locals[key] = value;
+        __classPrivateFieldGet(this, _RouteModel_locals, "f")[key] = value;
         return p;
     }
     /**
@@ -77,7 +88,7 @@ class RouteModel {
      */
     setProximalLocal(key, value, callback) {
         value = callback(value);
-        this.#locals[key] = value;
+        __classPrivateFieldGet(this, _RouteModel_locals, "f")[key] = value;
     }
     /**
      *
@@ -99,14 +110,14 @@ class RouteModel {
     async setDistalLocal(callback, key, criteria) {
         let value = await callback();
         if (await criteria(value))
-            this.#locals[key] = value;
+            __classPrivateFieldGet(this, _RouteModel_locals, "f")[key] = value;
     }
     /**
      * @returns {express.Router}
      */
     get router() {
-        this.#before = true;
-        return this.#router;
+        __classPrivateFieldSet(this, _RouteModel_before, true, "f");
+        return __classPrivateFieldGet(this, _RouteModel_router, "f");
     }
     /**
      * @param {express.Router} router
@@ -137,18 +148,16 @@ class RouteModel {
         else
             throw new Error(`The given name for the RouteModel for ${this.route}`);
     }
-    #done = false;
-    #before = false;
     set experimental(tf) {
-        if (this.#done)
+        if (__classPrivateFieldGet(this, _RouteModel_done, "f"))
             throw new Error(`The experimental setting for RouteModel 〔${this.name}〕 is already set: ${this.experimental}`);
-        if (this.#before)
+        if (__classPrivateFieldGet(this, _RouteModel_before, "f"))
             throw new Error(`RouteModel 〔${this.name}〕 is being called from the outside.`);
-        this.#experimental = tf;
-        this.#done = true;
+        __classPrivateFieldSet(this, _RouteModel_experimental, tf, "f");
+        __classPrivateFieldSet(this, _RouteModel_done, true, "f");
     }
     get experimental() {
-        return this.#experimental;
+        return __classPrivateFieldGet(this, _RouteModel_experimental, "f");
     }
     /**
      * Apply the router to an express application instance.
@@ -156,7 +165,7 @@ class RouteModel {
      */
     apply(application) {
         try {
-            application.use(this._route, this.#router);
+            application.use(this._route, __classPrivateFieldGet(this, _RouteModel_router, "f"));
             console.info(`☆ RouteModel 〔${this.name}〕 has been installed at the server.`);
         }
         catch (error) {
@@ -180,4 +189,7 @@ class RouteModel {
     }
 }
 exports.RouteModel = RouteModel;
+_RouteModel_express = new WeakMap(), _RouteModel_router = new WeakMap(), _RouteModel_experimental = new WeakMap(), _RouteModel_locals = new WeakMap(), _RouteModel_done = new WeakMap(), _RouteModel_before = new WeakMap(), _RouteModel_instances = new WeakSet(), _RouteModel_inLocals = function _RouteModel_inLocals() {
+    return __classPrivateFieldGet(this, _RouteModel_locals, "f");
+};
 // a = new RouteModel("#TEST", "TESTTEST");

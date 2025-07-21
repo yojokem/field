@@ -41,6 +41,7 @@ nodejs express 기반, MySQL 사용.
 - 파일 업로드 (구글 드라이브 등 연동 고려)
 - 문자·카카오톡 메시지 송·수신
 - 사무 단계적 구성 기획
+- 클라이언트 위치상 시간대 표시 및 시간대 선택
 
 ### Scalability
 - Web
@@ -49,3 +50,4 @@ nodejs express 기반, MySQL 사용.
 ## Extendability
 - PWA 적용
 - 카카오 인앱 브라우저 자동 로그인
+- 서버의 물리적 위치와 관계없는 시간 표시

@@ -6,10 +6,10 @@ const pages = [];
 const pathRegExp = /(\/[^\s]*)?$/u;
 const fileRegExp = /(\/[^\s]*)?((\.)[\w]+){1}$/u;
 class Page {
-    title = '';
-    _path = '';
-    _middlewares = [];
     constructor(title, path) {
+        this.title = '';
+        this._path = '';
+        this._middlewares = [];
         this.title = title;
         this.path = path;
         pages.push(this);

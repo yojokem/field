@@ -5,9 +5,9 @@ export class Section {
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column({unique: true})
+    @Column({type: "varchar", unique: true})
     name: string
 
-    
+    @Column({type: "tinytext", charset: "utf-8"})
     desc: string
 }
