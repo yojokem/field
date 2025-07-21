@@ -1,7 +1,7 @@
 "use strict";
 // 이거 변수 하나인 경우에 괄호 없이 정의된 anonymous function 같은 것들은 어떻게 처리할 수가 없네?
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getParams = void 0;
+exports.getParams = getParams;
 // JavaScript program to get the function
 // name/values dynamically
 function getParams(func) {
@@ -30,7 +30,6 @@ function getParams(func) {
     });
     return params;
 }
-exports.getParams = getParams;
 /* Test sample functions
 let fun1 = function (a) { };
 
