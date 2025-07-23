@@ -3,6 +3,8 @@ import "reflect-metadata";
 
 declare module 'express-session' {
     interface SessionData {
-        cookie: Cookie
+        cookie: Cookie;
+        lang: Language;
+        
     }
 }
