@@ -1,6 +1,26 @@
-import { Entity } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, JoinColumn, OneToMany, Timestamp } from "typeorm";
+import { BinaryUUuidColumn, PrimaryGeneratedBinaryUuidColumn, SectionColumn } from "../../typeorm.decorators";
+import { DataRef } from "./DataRef";
 
-@Entity({name: "fence"})
-export class Fence {
-    
+export abstract class Fence {
+    @PrimaryGeneratedBinaryUuidColumn()
+    uid!: string;
+
+    fid: string;
+
+    @BinaryUUuidColumn()
+    @OneToMany(() => DataRef, ref => ref.data)
+    references: DataRef[];
+
+    @Column({type: "varchar", unique: true})
+    name: string;
+
+    @SectionColumn()
+    section: string;
+
+    @CreateDateColumn({type: "timestamp", default: () => "CURRENT_TIMESTAMP()"})
+    created!: Timestamp;
+
+    @DeleteDateColumn({type: "timestamp", default: () => "CURRENT_TIMESTAMP()"})
+    deleted!: Timestamp | null;
 }

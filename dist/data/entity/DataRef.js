@@ -11,28 +11,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DataRef = void 0;
 const typeorm_1 = require("typeorm");
-const typeorm_decorators_1 = require("../../typeorm.decorators");
-const _0default_1 = require("./0default");
-let DataRef = class DataRef extends _0default_1.default0 {
+const Fence_1 = require("./Fence");
+let DataRef = class DataRef extends Fence_1.Fence {
 };
 exports.DataRef = DataRef;
 __decorate([
-    (0, typeorm_decorators_1.BinaryUuidColumn)(),
-    (0, typeorm_1.ManyToOne)(() => _0default_1.default0, data => data.references),
-    __metadata("design:type", _0default_1.default0)
+    (0, typeorm_1.ManyToOne)(() => Fence_1.Fence, data => data.references, { cascade: ['insert', 'soft-remove', 'update', 'recover'] }),
+    (0, typeorm_1.JoinColumn)({ name: "duid", referencedColumnName: "uid" }),
+    __metadata("design:type", Fence_1.Fence)
 ], DataRef.prototype, "data", void 0);
 __decorate([
-    (0, typeorm_decorators_1.SectionColumn)(),
+    (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], DataRef.prototype, "section", void 0);
-__decorate([
-    (0, typeorm_1.CreateDateColumn)({ type: "timestamp", default: () => "CURRENT_TIMESTAMP()" }),
-    __metadata("design:type", Date)
-], DataRef.prototype, "created", void 0);
-__decorate([
-    (0, typeorm_1.DeleteDateColumn)({ type: "timestamp", default: () => "CURRENT_TIMESTAMP()" }),
-    __metadata("design:type", Date)
-], DataRef.prototype, "deleted", void 0);
+], DataRef.prototype, "type", void 0);
 exports.DataRef = DataRef = __decorate([
     (0, typeorm_1.Entity)({ name: "dataref" })
 ], DataRef);

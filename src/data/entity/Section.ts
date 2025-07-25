@@ -1,7 +1,8 @@
 import { Entity, Column, PrimaryColumn } from "typeorm";
+import { Fence } from "./Fence";
 
 @Entity({name: "section"})
-export class Section {
+export class Section extends Fence {
     @PrimaryColumn({type: "varchar", length: 5, nullable: false})
     id: string;
 

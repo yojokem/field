@@ -1,12 +1,12 @@
 import { Entity, Column, CreateDateColumn, DeleteDateColumn, ManyToOne, JoinColumn } from "typeorm";
 import { BinaryUuidColumn, BinaryUUuidColumn, PrimaryGeneratedBinaryUuidColumn, SectionColumn } from "../../typeorm.decorators";
-import { default0 } from "./0default";
+import { Fence } from "./Fence";
 
 @Entity({name: "dataref"})
-export class DataRef extends default0 {
-    @ManyToOne(() => default0, data => data.references, {cascade: ['insert', 'soft-remove', 'update', 'recover']})
+export class DataRef extends Fence {
+    @ManyToOne(() => Fence, data => data.references, {cascade: ['insert', 'soft-remove', 'update', 'recover']})
     @JoinColumn({name: "duid", referencedColumnName: "uid"})
-    data: default0;
+    data: Fence;
 
     @Column()
     type: string;

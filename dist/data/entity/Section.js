@@ -11,7 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Section = void 0;
 const typeorm_1 = require("typeorm");
-let Section = class Section {
+const Fence_1 = require("./Fence");
+let Section = class Section extends Fence_1.Fence {
 };
 exports.Section = Section;
 __decorate([
