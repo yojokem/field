@@ -6,6 +6,7 @@ export abstract class Fence {
     @PrimaryGeneratedBinaryUuidColumn()
     uid!: string;
 
+    @Column({type: "varchar", nullable: false})
     fid: string;
 
     @BinaryUUuidColumn()

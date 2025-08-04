@@ -18,5 +18,6 @@ p.get("/", (req: Request, res: Response) => {
 
 // Load
 import * as auth from './auth';
+import * as admin from './admin';
 
-export const LISTS: Array<RouteModel> = [defaultIndex, auth.auth];
+export const LISTS: Array<RouteModel> = [defaultIndex, auth.auth, admin.admin];

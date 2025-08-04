@@ -1,8 +1,9 @@
 const languages: Language[] = [];
 
-class Language {
-    #name = '';
-    #short = '';
+export class Language {
+    #name: string = '';
+    #short: string = '';
+    #country: string = '';
 
     // Please not be confused with python. Though it's absolutely similar.
     dictionary = {}
@@ -49,6 +50,15 @@ class Language {
         let k = new String(short).trim();
         if(Language.checkSingularityShortly(k)) this.#short = k;
         else throw new Error(`The Language ${this.name}(${this.#short}) already settled once.`);
+    }
+
+    get country() {
+        return this.#country;
+    }
+
+    set country(country) {
+        let p = this.#country;
+        let k = new String(country).trim();
     }
 
     /**

@@ -31,30 +31,7 @@
             <div class="stretched row">
                 <div class="column">
                     {% block aside %}
-                    <div class="ui mobile hidden container segments">
-                        <div class="ui segment">
-                            <div id="profile" class="ui card">
-                                {% include "public/profileS.html" %}
-                            </div>
-                            <div id="messages" class="ui container">
-                                <div class="ui tiny message">
-                                    <div class="header">daw</div>
-                                    dwa
-                                </div>
-                            </div>
-                            <div id="links" class="ui one column grid">
-                                <div class="column">
-                                    <div class="ui piled segment">
-                                        <p>dwadaw</p>
-                                        <p>dwadaw</p>
-                                        <p>dwadaw</p>
-                                    </div>
-                                </div>
-                                <div class="column">dwa</div>
-                                <div class="column">dwa</div>
-                            </div>
-                        </div>
-                    </div>
+                    {% include "./layout/aside.html" %}
                     {% endblock %}
                 </div>
                 <div class="twelve wide column">
